@@ -29,61 +29,6 @@ const mandatoryQuestions = [
     name: "managerOfficeNumber",
     message: "What is your manager's office number?",
   },
-  //   {
-  //     type: "input",
-  //     name: "engineerName",
-  //     message: "What is the name of your engineer?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "engineerId",
-  //     message: "What is your engineer's id number?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "engineerEmail",
-  //     message: "What is your engineer's email?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "github",
-  //     message: "What is your engineer's Github username?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "internName",
-  //     message: "What is the name of your intern?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "internId",
-  //     message: "What is your intern's id number?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "engineerEmail",
-  //     message: "What is your engineer's email?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "school",
-  //     message: "What school does your intern go to?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "employeeName",
-  //     message: "What is the name of your employee?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "employeeId",
-  //     message: "What is your employee's id?",
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "employeeEmail",
-  //     message: "What is your employee's email?",
-  //   },
   {
     type: "list",
     name: "moreEmployees",
@@ -165,8 +110,8 @@ function writeToFile(fileName, data) {
 
 // Function to run questions
 function runQuestions() {
-  inquirer.prompt(mandatoryQuestions).then(() => {
-    // console.log(responses);
+  inquirer.prompt(mandatoryQuestions).then((responses) => {
+    console.log(responses);
 
     if (mandatoryQuestions.moreEmployees === "Engineer") {
       inquirer.prompt(engineerQuestions);
@@ -177,6 +122,18 @@ function runQuestions() {
     } else {
       return "";
     }
+
+    let { managerName, managerId, managerEmail, managerOfficeNumber } =
+      responses;
+    let storedResponses;
+    storedResponses = new Manager(
+      managerName,
+      managerId,
+      managerEmail,
+      managerOfficeNumber
+    );
+    responses.push(storedResponses);
+
     writeToFile("dist/index.html", responses);
   });
 }
