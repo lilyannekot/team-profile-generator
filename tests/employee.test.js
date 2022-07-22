@@ -1,4 +1,4 @@
-const Employee = require("../lib/employee.js");
+const Employee = require("../lib/employee");
 
 describe("Employee", () => {
   test("to see if the inputted information will appear in each section", () => {
