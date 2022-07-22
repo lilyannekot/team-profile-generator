@@ -1,7 +1,7 @@
 const Employee = require("../lib/employee");
 
 describe("Employee", () => {
-  test("to see if the inputted information will appear in each section", () => {
+  test("to see if the inputted information is returned", () => {
     const Jamie = new Employee("Jamie", "1", "jamie@helloworld.com");
 
     expect(Jamie.name).toBe("Jamie");

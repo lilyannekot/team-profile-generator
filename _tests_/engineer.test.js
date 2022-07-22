@@ -1,7 +1,7 @@
 const Engineer = require("../lib/engineer");
 
 describe("Engineer", () => {
-  test("to see if all engineer data is collected", () => {
+  test("to see if all engineer data is returned", () => {
     const Kelli = new Engineer(
       "Kelli",
       "2",
