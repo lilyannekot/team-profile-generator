@@ -1,6 +1,27 @@
-const createTeam = (team) => {
+const createTeam = (responses) => {
   const createManager = (manager) => {
     return `
+    !DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.min.js">
+    <title>Team Profiles</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 jumbotron mb-3">
+                <h1 class="text-center">Team Profiles</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="row col-12 justify-content-center">
+
         <div class="card">
             <div class="card-header bg-primary text-white">
                 <h2 class="card-title">${manager.getName()}</h2>
@@ -73,33 +94,38 @@ const createTeam = (team) => {
                     </li>
                 </ul>
             </div>
-        </div> `;
+        </div> 
+        </div>
+        </div>
+     </div>
+</body>
+</html> `;
   };
 
   const html = [];
 
   html.push(
-    team
+    responses
       .filter((employee) => employee.getRole() === "Manager")
       .map((manager) => createManager(manager))
   );
 
   html.push(
-    team
+    responses
       .filter((employee) => employee.getRole() === "Engineer")
       .map((engineer) => createEngineer(engineer))
       .join("")
   );
 
   html.push(
-    team
+    responses
       .filter((employee) => employee.getRole() === "Intern")
       .map((intern) => createIntern(intern))
       .join("")
   );
 
   html.push(
-    team
+    responses
       .filter((employee) => employee.getRole() === "Employee")
       .map((employee) => createEmployee(employee))
       .join("")
@@ -107,3 +133,5 @@ const createTeam = (team) => {
 
   return html.join("");
 };
+
+module.exports = createTeam;
